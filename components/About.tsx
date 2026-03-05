@@ -36,7 +36,7 @@ export default function About() {
             <div className="relative">
               <div className="relative h-[420px] sm:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/84407726.jpg"
+                  src="/images/84407726.webp"
                   alt="Villa Mare Mar"
                   fill
                   className="object-cover"
@@ -48,7 +48,7 @@ export default function About() {
               {/* Floating accent image */}
               <div className="absolute -bottom-6 -right-6 w-44 h-44 sm:w-56 sm:h-56 rounded-xl overflow-hidden shadow-xl border-4 border-white">
                 <Image
-                  src="/images/43318517.jpg"
+                  src="/images/43318517.webp"
                   alt="Villa Mare Mar terasa"
                   fill
                   className="object-cover"

@@ -26,8 +26,8 @@ yarn-error.log*
 *.pem
 Thumbs.db
 
-# Large video files (served locally, not tracked in git)
-public/video/
+# Scripts folder (local utilities)
+scripts/
 
 # TypeScript
 *.tsbuildinfo

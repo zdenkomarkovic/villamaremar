@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageContext";
 
 const HERO_IMAGES = [
-  "/images/63817462.jpg",
-  "/images/43318563.jpg",
-  "/images/156069210.jpg",
-  "/images/491527770.jpg",
-  "/images/84407726.jpg",
+  "/images/63817462.webp",
+  "/images/43318563.webp",
+  "/images/156069210.webp",
+  "/images/491527770.webp",
+  "/images/84407726.webp",
 ];
 
 export default function Hero() {

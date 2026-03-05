@@ -6,7 +6,17 @@
       "Bash(npm:*)",
       "Bash(npx tsc:*)",
       "Bash(node:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(where ffmpeg:*)",
+      "Bash(ls E:/Sajtovi/villamaremar/public/images/*.jpg)",
+      "Bash(sed:*)",
+      "Read(//c/ffmpeg/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(\"$FFMPEG\":*)",
+      "Bash(ls:*)"
     ]
   }
 }
