@@ -92,11 +92,7 @@ export default function Videos() {
             playsInline
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-            <div className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-5 transition-all group-hover:scale-110">
-              <PlayIcon />
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
           <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full">
             {t.videos.video} 1 / {VIDEO_FILES.length}
           </div>
