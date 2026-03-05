@@ -1,81 +1,78 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useLang } from './LanguageContext'
-import type { Lang } from '@/lib/translations'
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLang } from "./LanguageContext";
+import type { Lang } from "@/lib/translations";
 
 const LANGS: { code: Lang; label: string; flag: string }[] = [
-  { code: 'sr', label: 'SR', flag: '🇷🇸' },
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'ru', label: 'RU', flag: '🇷🇺' },
-  { code: 'de', label: 'DE', flag: '🇩🇪' },
-]
+  { code: "sr", label: "SR", flag: "🇷🇸" },
+  { code: "en", label: "EN", flag: "🇬🇧" },
+  { code: "ru", label: "RU", flag: "🇷🇺" },
+  { code: "de", label: "DE", flag: "🇩🇪" },
+];
 
 export default function Navbar() {
-  const { lang, setLang, t } = useLang()
-  const router = useRouter()
-  const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { lang, setLang, t } = useLang();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
-    { href: '#about', label: t.nav.about },
-    { href: '#rooms', label: t.nav.rooms },
-    { href: '#amenities', label: t.nav.amenities },
-    { href: '#gallery', label: t.nav.gallery },
-    { href: '#videos', label: t.nav.videos },
-    { href: '#location', label: t.nav.location },
-    { href: '#contact', label: t.nav.contact },
-  ]
+    { href: "#about", label: t.nav.about },
+    { href: "#rooms", label: t.nav.rooms },
+    { href: "#amenities", label: t.nav.amenities },
+    { href: "#gallery", label: t.nav.gallery },
+    { href: "#videos", label: t.nav.videos },
+    { href: "#location", label: t.nav.location },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   const handleNavClick = (href: string) => {
-    setMobileOpen(false)
-    if (pathname === '/') {
-      const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    setMobileOpen(false);
+    if (pathname === "/") {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
-      router.push('/' + href)
+      router.push("/" + href);
     }
-  }
+  };
 
   const handleLogoClick = () => {
-    if (pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      router.push('/')
+      router.push("/");
     }
-  }
+  };
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[var(--color-sea-900)]/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-5'
+          ? "bg-[var(--color-sea-900)]/95 backdrop-blur-md shadow-lg py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <button
-            onClick={handleLogoClick}
-            className="flex flex-col leading-none group"
-          >
+          <button onClick={handleLogoClick} className="flex flex-col leading-none group">
             <span className="text-[var(--color-sand-300)] font-serif text-xl font-bold tracking-wide group-hover:text-white transition-colors">
               Villa Mare Mar
             </span>
-            <span className="text-white/60 text-xs tracking-widest uppercase">
+            <span className="text-white/50 text-xs tracking-widest uppercase">
               Sutomore · Montenegro
             </span>
           </button>
@@ -103,8 +100,8 @@ export default function Navbar() {
                   onClick={() => setLang(l.code)}
                   className={`px-2 py-1 text-xs font-semibold rounded transition-all ${
                     lang === l.code
-                      ? 'bg-[var(--color-sand-500)] text-[var(--color-sea-900)]'
-                      : 'text-white/60 hover:text-white'
+                      ? "bg-[var(--color-sand-500)] text-[var(--color-sea-900)]"
+                      : "text-white/60 hover:text-white"
                   }`}
                   title={l.flag}
                 >
@@ -112,7 +109,6 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
-
           </div>
 
           {/* Mobile: lang + hamburger */}
@@ -124,8 +120,8 @@ export default function Navbar() {
                   onClick={() => setLang(l.code)}
                   className={`text-xs font-semibold px-1.5 py-0.5 rounded transition-all ${
                     lang === l.code
-                      ? 'bg-[var(--color-sand-500)] text-[var(--color-sea-900)]'
-                      : 'text-white/60'
+                      ? "bg-[var(--color-sand-500)] text-[var(--color-sea-900)]"
+                      : "text-white/60"
                   }`}
                 >
                   {l.label}
@@ -139,9 +135,19 @@ export default function Navbar() {
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -154,7 +160,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="lg:hidden overflow-hidden bg-[var(--color-sea-900)]/98 backdrop-blur-md"
@@ -174,5 +180,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
-  )
+  );
 }
