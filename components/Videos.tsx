@@ -5,11 +5,11 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageContext";
 
 const VIDEO_FILES = [
-  "/video/DJI_0942.MP4",
-  "/video/DJI_0943.MP4",
-  "/video/DJI_0956.MP4",
-  "/video/DJI_0957.MP4",
-  "/video/DJI_0960.MP4",
+  "/video/DJI_0942.mp4",
+  "/video/DJI_0943.mp4",
+  "/video/DJI_0956.mp4",
+  "/video/DJI_0957.mp4",
+  "/video/DJI_0960.mp4",
 ];
 
 function PlayIcon() {
