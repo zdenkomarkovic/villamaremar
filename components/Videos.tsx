@@ -102,6 +102,7 @@ export default function Videos() {
             playsInline
             poster="/images/thumbs/DJI_0960.jpg"
             className="w-full h-full object-cover"
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
           <div className="absolute bottom-4 left-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full">
