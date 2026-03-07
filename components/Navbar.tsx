@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useLang } from "./LanguageContext";
 import type { Lang } from "@/lib/translations";
 
@@ -28,7 +29,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "#about", label: t.nav.about },
-    { href: "#rooms", label: t.nav.rooms },
+    { href: "#pricing", label: t.nav.pricing },
     { href: "#amenities", label: t.nav.amenities },
     { href: "#gallery", label: t.nav.gallery },
     { href: "#videos", label: t.nav.videos },
@@ -68,13 +69,22 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <button onClick={handleLogoClick} className="flex flex-col leading-none group">
-            <span className="text-[var(--color-sand-300)] font-serif text-xl font-bold tracking-wide group-hover:text-white transition-colors">
-              Villa Mare Mar
-            </span>
-            <span className="text-white/50 text-xs tracking-widest uppercase">
-              Sutomore · Montenegro
-            </span>
+          <button onClick={handleLogoClick} className="flex items-center gap-3 group">
+            <Image
+              src="/images/logo.png"
+              alt="Villa Mare Mar"
+              width={48}
+              height={48}
+              className="object-contain drop-shadow"
+            />
+            {/* <div className="flex flex-col leading-none">
+              <span className="text-[var(--color-sand-300)] font-serif text-xl font-bold tracking-wide group-hover:text-white transition-colors">
+                Villa Mare Mar
+              </span>
+              <span className="text-white/50 text-xs tracking-widest uppercase">
+                Sutomore · Montenegro
+              </span>
+            </div> */}
           </button>
 
           {/* Desktop nav */}

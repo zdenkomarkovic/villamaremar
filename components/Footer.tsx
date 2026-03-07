@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLang } from "./LanguageContext";
 
 const NAV_LINKS = ["#about", "#amenities", "#gallery", "#location", "#contact"] as const;
@@ -19,9 +20,18 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-11">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-2xl text-[var(--color-sand-300)] font-bold mb-2">
-              Villa Mare Mar
-            </h3>
+            <div className="flex items-center gap-3 mb-2">
+              <Image
+                src="/images/logo.png"
+                alt="Villa Mare Mar"
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+              <h3 className="font-serif text-2xl text-[var(--color-sand-300)] font-bold">
+                Villa Mare Mar
+              </h3>
+            </div>
             <p className="text-white/50 text-sm leading-relaxed mb-4">{t.footer.address}</p>
             <div className="flex gap-4">
               <a
@@ -74,18 +84,6 @@ export default function Footer() {
               {t.contact.title}
             </h4>
             <div className="flex flex-col gap-2 text-sm">
-              <a
-                href="tel:+38230373262"
-                className="text-white/50 hover:text-white transition-colors"
-              >
-                +382 30 373 262
-              </a>
-              <a
-                href="tel:+38268759607"
-                className="text-white/50 hover:text-white transition-colors"
-              >
-                +382 68 759 607
-              </a>
               <a
                 href="tel:+381638650691"
                 className="text-white/50 hover:text-white transition-colors"

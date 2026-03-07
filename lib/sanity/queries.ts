@@ -31,3 +31,23 @@ export const ROOM_BY_ID_QUERY = groq`
 export const ALL_ROOM_IDS_QUERY = groq`
   *[_type == "room"] { _id }
 `
+
+export const PRICING_QUERY = groq`
+  *[_type == "cenovnik"][0] {
+    r1low, r1high,
+    r2low, r2high,
+    r3low, r3high,
+    r4low, r4high,
+    r5low, r5high,
+    r6low, r6high
+  }
+`
+
+export const GALLERY_IMAGES_QUERY = groq`
+  *[_type == "galleryImage"] | order(order asc) {
+    _id,
+    "url": image.asset->url,
+    alt,
+    order
+  }
+`

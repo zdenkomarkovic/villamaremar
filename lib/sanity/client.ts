@@ -1,6 +1,8 @@
 import { createClient } from 'next-sanity'
 import type { Room } from '@/types/room'
-import { ROOMS_QUERY, ROOM_BY_ID_QUERY, ALL_ROOM_IDS_QUERY } from './queries'
+import type { Cenovnik } from '@/types/pricing'
+import type { GalleryImage } from '@/types/galleryImage'
+import { ROOMS_QUERY, ROOM_BY_ID_QUERY, ALL_ROOM_IDS_QUERY, PRICING_QUERY, GALLERY_IMAGES_QUERY } from './queries'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 
@@ -35,6 +37,24 @@ export async function fetchAllRoomIds(): Promise<{ _id: string }[]> {
   if (!client) return []
   try {
     return await client.fetch<{ _id: string }[]>(ALL_ROOM_IDS_QUERY)
+  } catch {
+    return []
+  }
+}
+
+export async function fetchPricing(): Promise<Cenovnik | null> {
+  if (!client) return null
+  try {
+    return await client.fetch<Cenovnik>(PRICING_QUERY)
+  } catch {
+    return null
+  }
+}
+
+export async function fetchGalleryImages(): Promise<GalleryImage[]> {
+  if (!client) return []
+  try {
+    return await client.fetch<GalleryImage[]>(GALLERY_IMAGES_QUERY)
   } catch {
     return []
   }
