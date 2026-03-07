@@ -103,11 +103,6 @@ export default function Videos() {
             poster="/images/thumbs/DJI_0960.jpg"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="bg-white/20 backdrop-blur-sm text-white rounded-full p-5">
-              <PlayIcon />
-            </div>
-          </div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
           <div className="absolute bottom-4 left-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full">
             {t.videos.video} 1 / {VIDEOS.length}
