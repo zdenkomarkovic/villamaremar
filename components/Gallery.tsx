@@ -235,8 +235,8 @@ export default function Gallery({ sanityImages = [] }: { sanityImages?: GalleryI
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={ALL_ENTRIES[lightbox].src}
-                  alt={ALL_ENTRIES[lightbox].alt ?? `Villa Mare Mar ${lightbox + 1}`}
+                  src={ALL_ENTRIES[lightbox]?.src ?? ''}
+                  alt={ALL_ENTRIES[lightbox]?.alt ?? `Villa Mare Mar ${lightbox + 1}`}
                   style={{
                     maxWidth: "100%",
                     maxHeight: "85vh",
