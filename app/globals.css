@@ -36,6 +36,7 @@ body {
   color: var(--color-sea-900);
   background-color: #fafaf8;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .font-serif {

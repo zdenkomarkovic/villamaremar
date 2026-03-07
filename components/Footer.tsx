@@ -101,10 +101,21 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-white/30 text-xs">
+          <p className="text-white/50 text-xs">
             © {new Date().getFullYear()} Villa Mare Mar. {t.footer.rights}.
           </p>
-          <p className="text-white/20 text-xs">Sutomore, Montenegro</p>
+          <p className="text-white/50 text-xs">Sutomore, Montenegro</p>
+          <p className="text-white/50 text-xs">
+            Izrada sajta:{" "}
+            <a
+              href="https://manikamwebsolutions.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--color-sand-300)] transition-colors"
+            >
+              Manikam Web Solutions
+            </a>
+          </p>
         </div>
       </div>
     </footer>

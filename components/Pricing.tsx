@@ -16,16 +16,23 @@ const DEFAULT: Required<Cenovnik> = {
 }
 
 const ROWS = [
-  { key: 'r1', capacity: 'Max 3', extra: '2 adl + 1 chd <12y', nameSr: 'Veliki balkon sa direktnim pogledom na more', nameEn: 'Big balcony with direct sea view', highlight: true },
-  { key: 'r2', capacity: 'Max 3', extra: '2 adl + 1 chd <12y', nameSr: 'Balkon sa bočnim pogledom na more',           nameEn: 'Side sea view balcony',                highlight: false },
-  { key: 'r3', capacity: 'Max 3', extra: null,                  nameSr: 'Bez balkona',                                nameEn: 'Without balcony',                      highlight: false },
-  { key: 'r4', capacity: 'Max 2', extra: null,                  nameSr: 'Veliki balkon sa direktnim pogledom na more', nameEn: 'Big balcony with direct sea view',     highlight: true },
-  { key: 'r5', capacity: 'Max 2', extra: null,                  nameSr: 'Balkon sa bočnim pogledom na more',           nameEn: 'Side sea view balcony',                highlight: false },
-  { key: 'r6', capacity: 'Max 2', extra: null,                  nameSr: 'Soba / Studio bez balkona',                  nameEn: 'Room / Studio without balcony',         highlight: false },
+  { key: 'r1', capacity: 'Max 3', extra: '2 adl + 1 chd <12y', nameSr: 'Studio sa velikim balkonom i direktnim pogledom na more', nameEn: 'Studio with big balcony and direct sea view',     nameRu: 'Студия с большим балконом и прямым видом на море',   nameDe: 'Studio mit großem Balkon und direktem Meerblick',  highlight: true },
+  { key: 'r2', capacity: 'Max 3', extra: '2 adl + 1 chd <12y', nameSr: 'Studio sa balkonom i bočnim pogledom na more',           nameEn: 'Studio with balcony and side sea view',           nameRu: 'Студия с балконом и боковым видом на море',          nameDe: 'Studio mit Balkon und seitlichem Meerblick',       highlight: false },
+  { key: 'r3', capacity: 'Max 3', extra: null,                  nameSr: 'Studio bez balkona',                                    nameEn: 'Studio without balcony',                         nameRu: 'Студия без балкона',                                 nameDe: 'Studio ohne Balkon',                               highlight: false },
+  { key: 'r4', capacity: 'Max 2', extra: null,                  nameSr: 'Studio sa velikim balkonom i direktnim pogledom na more', nameEn: 'Studio with big balcony and direct sea view',    nameRu: 'Студия с большим балконом и прямым видом на море',   nameDe: 'Studio mit großem Balkon und direktem Meerblick',  highlight: true },
+  { key: 'r5', capacity: 'Max 2', extra: null,                  nameSr: 'Studio sa balkonom i bočnim pogledom na more',           nameEn: 'Studio with balcony and side sea view',           nameRu: 'Студия с балконом и боковым видом на море',          nameDe: 'Studio mit Balkon und seitlichem Meerblick',       highlight: false },
+  { key: 'r6', capacity: 'Max 2', extra: null,                  nameSr: 'Studio / Soba bez balkona',                             nameEn: 'Studio / Room without balcony',                  nameRu: 'Студия / Комната без балкона',                       nameDe: 'Studio / Zimmer ohne Balkon',                      highlight: false },
 ]
 
+const NAME_KEYS = { sr: 'nameSr', en: 'nameEn', ru: 'nameRu', de: 'nameDe' } as const
+type RowType = typeof ROWS[0]
+function getRowName(row: RowType, lang: string): string {
+  const key = NAME_KEYS[lang as keyof typeof NAME_KEYS] ?? 'nameSr'
+  return row[key]
+}
+
 export default function Pricing({ cenovnik }: { cenovnik?: Cenovnik | null }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -83,8 +90,7 @@ export default function Pricing({ cenovnik }: { cenovnik?: Cenovnik | null }) {
                   {row.extra && <span className="text-white/50 text-xs mt-0.5">{row.extra}</span>}
                 </div>
                 <div className="px-5 py-4 border-r border-white/10 flex flex-col justify-center gap-0.5">
-                  <span className="text-white font-semibold text-sm leading-snug">{row.nameSr}</span>
-                  <span className="text-white/50 text-xs leading-snug">{row.nameEn}</span>
+                  <span className="text-white font-semibold text-sm leading-snug">{getRowName(row, lang)}</span>
                 </div>
                 <div className="px-5 py-4 border-r border-white/10 flex items-center justify-center">
                   <span className={`text-xl font-bold ${row.highlight ? 'text-[var(--color-sand-300)]' : 'text-white'}`}>{low}</span>
@@ -110,14 +116,13 @@ export default function Pricing({ cenovnik }: { cenovnik?: Cenovnik | null }) {
                 transition={{ duration: 0.5, delay: 0.15 + i * 0.07 }}
                 className="bg-white/5 border border-white/10 rounded-2xl p-4"
               >
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div>
-                    <p className="text-white font-semibold text-sm leading-snug">{row.nameSr}</p>
-                    <p className="text-white/50 text-xs mt-0.5">{row.nameEn}</p>
-                  </div>
-                  <div className="shrink-0 bg-[var(--color-sea-800)] rounded-lg px-3 py-1 text-center">
-                    <span className="text-white/60 text-xs block">{row.capacity}</span>
-                    {row.extra && <span className="text-white/40 text-xs">{row.extra}</span>}
+                <div className="flex flex-col gap-2 mb-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-white font-semibold text-sm leading-snug">{getRowName(row, lang)}</p>
+                    <div className="shrink-0 bg-[var(--color-sea-800)] rounded-lg px-3 py-1 text-center">
+                      <span className="text-white/60 text-xs block">{row.capacity}</span>
+                      {row.extra && <span className="text-white/40 text-xs">{row.extra}</span>}
+                    </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">

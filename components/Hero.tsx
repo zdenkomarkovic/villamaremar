@@ -10,7 +10,7 @@ const HERO_IMAGES = [
   "/images/43318563.webp",
   "/images/156069210.webp",
   "/images/491527770.webp",
-  "/images/84407726.webp",
+  "/images/84407771.webp",
 ];
 
 export default function Hero() {
@@ -112,7 +112,12 @@ export default function Hero() {
             className="flex items-center gap-2 bg-[var(--color-coral-500)] hover:bg-[var(--color-coral-400)] text-white font-semibold px-8 py-4 rounded-full text-base transition-all hover:scale-105 shadow-lg"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
             </svg>
             {t.hero.cta}
           </button>

@@ -12,7 +12,7 @@ const LOCAL_IMAGES = [
   "156075390.webp",
   "84407726.webp",
   "84407771.webp",
-  "84407930.webp",
+
   "84408390.webp",
   "84406659.webp",
   "84406304.webp",
@@ -46,6 +46,7 @@ const LOCAL_IMAGES = [
   "43318559.webp",
   "43318548.webp",
   "43318538.webp",
+  "84407930.webp",
   "43318519.webp",
   "43318518.webp",
   "43318517.webp",
@@ -235,7 +236,7 @@ export default function Gallery({ sanityImages = [] }: { sanityImages?: GalleryI
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={ALL_ENTRIES[lightbox]?.src ?? ''}
+                  src={ALL_ENTRIES[lightbox]?.src ?? ""}
                   alt={ALL_ENTRIES[lightbox]?.alt ?? `Villa Mare Mar ${lightbox + 1}`}
                   style={{
                     maxWidth: "100%",
