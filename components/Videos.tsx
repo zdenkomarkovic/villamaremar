@@ -24,20 +24,8 @@ export default function Videos() {
   const { t } = useLang();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const sectionRef = useRef(null);
-  const sectionInView = useInView(sectionRef, { margin: "0px" });
   const [lightbox, setLightbox] = useState<number | null>(null);
   const featuredRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = featuredRef.current;
-    if (!video) return;
-    if (sectionInView) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [sectionInView]);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
   const prevVideo = useCallback(
@@ -68,7 +56,7 @@ export default function Videos() {
   }, [lightbox]);
 
   return (
-    <section id="videos" className="section-padding bg-[var(--color-sea-900)]" ref={sectionRef}>
+    <section id="videos" className="section-padding bg-[var(--color-sea-900)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -99,11 +87,16 @@ export default function Videos() {
             ref={featuredRef}
             src={VIDEO_FILES[0]}
             muted
-            loop
             playsInline
             preload="metadata"
+            onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1 }}
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="bg-white/20 backdrop-blur-sm text-white rounded-full p-5">
+              <PlayIcon />
+            </div>
+          </div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
           <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full">
             {t.videos.video} 1 / {VIDEO_FILES.length}
