@@ -96,7 +96,7 @@ export default function Videos() {
         >
           <video
             ref={featuredRef}
-            src={VIDEOS[0].src}
+            src={VIDEOS[0]?.src ?? ''}
             muted
             loop
             playsInline
