@@ -24,7 +24,19 @@ export default function Videos() {
   const { t } = useLang();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const featuredRef = useRef<HTMLVideoElement>(null);
+  const featuredInView = useInView(featuredRef, { once: false, margin: "0px" });
   const [lightbox, setLightbox] = useState<number | null>(null);
+
+  useEffect(() => {
+    const video = featuredRef.current;
+    if (!video) return;
+    if (featuredInView) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [featuredInView]);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
   const prevVideo = useCallback(
@@ -82,9 +94,13 @@ export default function Videos() {
           style={{ aspectRatio: "16/9" }}
           onClick={() => setLightbox(0)}
         >
-          <img
-            src="/images/thumbs/DJI_0960.jpg"
-            alt="Villa Mare Mar video"
+          <video
+            ref={featuredRef}
+            src={VIDEOS[0].src}
+            muted
+            loop
+            playsInline
+            poster="/images/thumbs/DJI_0960.jpg"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
