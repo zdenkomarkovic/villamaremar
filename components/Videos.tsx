@@ -191,8 +191,8 @@ export default function Videos() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <video
-                  key={VIDEOS[lightbox].src}
-                  src={VIDEOS[lightbox].src}
+                  key={VIDEOS[lightbox!].src}
+                  src={VIDEOS[lightbox!].src}
                   controls
                   autoPlay
                   playsInline
