@@ -205,8 +205,8 @@ export default function Contact() {
 
           {/* Right – contact form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-[var(--color-sand-100)]"
           >

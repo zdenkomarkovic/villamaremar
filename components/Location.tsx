@@ -33,8 +33,8 @@ export default function Location() {
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           {/* Map embed */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="rounded-2xl overflow-hidden shadow-2xl h-[350px] sm:h-[420px]"
           >
@@ -51,8 +51,8 @@ export default function Location() {
 
           {/* Info */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25 }}
             className="flex flex-col gap-6"
           >

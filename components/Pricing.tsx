@@ -80,8 +80,8 @@ export default function Pricing({ cenovnik }: { cenovnik?: Cenovnik | null }) {
             return (
               <motion.div
                 key={row.key}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.07 }}
                 className={`grid grid-cols-[1fr_2fr_1fr_1fr] border-t border-white/10 ${i % 2 === 0 ? 'bg-white/5' : ''}`}
               >
