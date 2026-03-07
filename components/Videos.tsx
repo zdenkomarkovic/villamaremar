@@ -4,12 +4,12 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useLang } from "./LanguageContext";
 
-const VIDEO_FILES = [
-  "/video/DJI_0960.mp4",
-  "/video/DJI_0942.mp4",
-  "/video/DJI_0943.mp4",
-  "/video/DJI_0956.mp4",
-  "/video/DJI_0957.mp4",
+const VIDEOS = [
+  { src: "/video/DJI_0960.mp4", thumb: "/images/thumbs/DJI_0960.jpg" },
+  { src: "/video/DJI_0942.mp4", thumb: "/images/thumbs/DJI_0942.jpg" },
+  { src: "/video/DJI_0943.mp4", thumb: "/images/thumbs/DJI_0943.jpg" },
+  { src: "/video/DJI_0956.mp4", thumb: "/images/thumbs/DJI_0956.jpg" },
+  { src: "/video/DJI_0957.mp4", thumb: "/images/thumbs/DJI_0957.jpg" },
 ];
 
 function PlayIcon() {
@@ -25,15 +25,14 @@ export default function Videos() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const featuredRef = useRef<HTMLVideoElement>(null);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
   const prevVideo = useCallback(
-    () => setLightbox((p) => (p === null ? null : p === 0 ? VIDEO_FILES.length - 1 : p - 1)),
+    () => setLightbox((p) => (p === null ? null : p === 0 ? VIDEOS.length - 1 : p - 1)),
     []
   );
   const nextVideo = useCallback(
-    () => setLightbox((p) => (p === null ? null : p === VIDEO_FILES.length - 1 ? 0 : p + 1)),
+    () => setLightbox((p) => (p === null ? null : p === VIDEOS.length - 1 ? 0 : p + 1)),
     []
   );
 
@@ -83,13 +82,9 @@ export default function Videos() {
           style={{ aspectRatio: "16/9" }}
           onClick={() => setLightbox(0)}
         >
-          <video
-            ref={featuredRef}
-            src={VIDEO_FILES[0]}
-            muted
-            playsInline
-            preload="metadata"
-            onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1 }}
+          <img
+            src="/images/thumbs/DJI_0960.jpg"
+            alt="Villa Mare Mar video"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -98,16 +93,16 @@ export default function Videos() {
             </div>
           </div>
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-          <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full">
-            {t.videos.video} 1 / {VIDEO_FILES.length}
+          <div className="absolute bottom-4 left-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full">
+            {t.videos.video} 1 / {VIDEOS.length}
           </div>
         </motion.div>
 
         {/* Grid – ostali videi */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {VIDEO_FILES.slice(1).map((src, i) => (
+          {VIDEOS.slice(1).map((video, i) => (
             <motion.button
-              key={src}
+              key={video.src}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.06 }}
@@ -115,16 +110,13 @@ export default function Videos() {
               className="group relative rounded-xl overflow-hidden bg-[var(--color-sea-800)]"
               style={{ aspectRatio: "16/9" }}
             >
-              <video
-                src={src}
-                muted
-                playsInline
-                preload="metadata"
-                onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1 }}
+              <img
+                src={video.thumb}
+                alt={`Villa Mare Mar video ${i + 2}`}
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-white/20 group-hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-3 transition-all group-hover:scale-110">
+                <div className="bg-white/20 group-hover:bg-white/30 text-white rounded-full p-3 transition-all group-hover:scale-110">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -165,7 +157,7 @@ export default function Videos() {
 
             {/* Counter */}
             <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/60 text-sm select-none">
-              {lightbox + 1} / {VIDEO_FILES.length}
+              {lightbox + 1} / {VIDEOS.length}
             </div>
 
             {/* Prev */}
@@ -199,8 +191,8 @@ export default function Videos() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <video
-                  key={VIDEO_FILES[lightbox]}
-                  src={VIDEO_FILES[lightbox]}
+                  key={VIDEOS[lightbox].src}
+                  src={VIDEOS[lightbox].src}
                   controls
                   autoPlay
                   playsInline
