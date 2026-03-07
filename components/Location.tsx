@@ -57,7 +57,7 @@ export default function Location() {
             className="flex flex-col gap-6"
           >
             {/* Address */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div className="bg-white/10 rounded-2xl p-6 border border-white/10">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-[var(--color-coral-500)] rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@ export default function Location() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
-                  className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-4 border border-white/10"
+                  className="bg-white/10 rounded-xl px-4 py-4 border border-white/10"
                 >
                   <span className="text-2xl block mb-2">{item.icon}</span>
                   <p className="text-white/80 text-sm leading-snug">{item.text}</p>

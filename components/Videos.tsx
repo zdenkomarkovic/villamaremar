@@ -24,8 +24,20 @@ export default function Videos() {
   const { t } = useLang();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const sectionRef = useRef(null);
+  const sectionInView = useInView(sectionRef, { margin: "0px" });
   const [lightbox, setLightbox] = useState<number | null>(null);
   const featuredRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = featuredRef.current;
+    if (!video) return;
+    if (sectionInView) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [sectionInView]);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
   const prevVideo = useCallback(
@@ -56,7 +68,7 @@ export default function Videos() {
   }, [lightbox]);
 
   return (
-    <section id="videos" className="section-padding bg-[var(--color-sea-900)]">
+    <section id="videos" className="section-padding bg-[var(--color-sea-900)]" ref={sectionRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -86,10 +98,10 @@ export default function Videos() {
           <video
             ref={featuredRef}
             src={VIDEO_FILES[0]}
-            autoPlay
             muted
             loop
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
@@ -115,6 +127,7 @@ export default function Videos() {
                 muted
                 playsInline
                 preload="metadata"
+                onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1 }}
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
               />
               <div className="absolute inset-0 flex items-center justify-center">
