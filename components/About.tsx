@@ -36,24 +36,13 @@ export default function About() {
             <div className="relative overflow-hidden sm:overflow-visible">
               <div className="relative h-[420px] sm:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/43318517.webp"
+                  src="/images/63817462.webp"
                   alt="Villa Mare Mar"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-sea-900)]/30 to-transparent" />
-              </div>
-
-              {/* Floating accent image */}
-              <div className="absolute -bottom-6 -right-6 w-44 h-44 sm:w-56 sm:h-56 rounded-xl overflow-hidden shadow-xl border-4 border-white">
-                <Image
-                  src="/images/84407726.webp"
-                  alt="Villa Mare Mar terasa"
-                  fill
-                  className="object-cover"
-                  sizes="224px"
-                />
               </div>
 
               {/* Rating badge */}
