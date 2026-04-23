@@ -1,6 +1,8 @@
 import { fetchRooms, fetchPricing, fetchGalleryImages } from '@/lib/sanity/client'
 import VillaSite from '@/components/VillaSite'
 
+export const revalidate = 60
+
 export default async function HomePage() {
   const [rooms, priceRows, sanityGallery] = await Promise.all([
     fetchRooms(),

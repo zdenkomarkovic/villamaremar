@@ -4,6 +4,8 @@ import { LanguageProvider } from '@/components/LanguageContext'
 import RoomDetail from '@/components/RoomDetail'
 import Navbar from '@/components/Navbar'
 
+export const revalidate = 60
+
 interface Props {
   params: Promise<{ id: string }>
 }
